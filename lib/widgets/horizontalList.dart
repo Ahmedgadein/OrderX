@@ -6,7 +6,7 @@ class HorizontalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80.0,
+      height: 100.0,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -45,15 +45,11 @@ class CategoryWidget extends StatelessWidget {
         child: Container(
           width: 100.0,
           child: ListTile(
-            contentPadding: EdgeInsets.all(18.0),
             title: Image.asset(
               category.imageUrl,
+              height: 80.0,
               width: 100.0,
             ),
-            subtitle: Container(
-              alignment: Alignment.topCenter,
-                child: Text(category.title,
-                  style: TextStyle(color: Colors.black),)),
           ),
         ),
       ),

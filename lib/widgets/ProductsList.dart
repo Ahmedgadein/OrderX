@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/model/product.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerceapp/screens/product_details.dart';
 
 class Products extends StatefulWidget {
   static List _product_list = Product.ProductsList;
@@ -33,7 +34,11 @@ class SingleProduct extends StatelessWidget {
         tag: product.name,
         child: Material(
           child: InkWell(
-            onTap: () {},
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context)=> ProductDetails(
+                product: this.product,
+              ),
+            )),
             child: GridTile(
               child: Image.asset(
                 product.picture,
@@ -45,7 +50,7 @@ class SingleProduct extends StatelessWidget {
                   title: Text(
                     "\$" + product.price.toString(),
                     style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.w600),
+                        color: Colors.red[800], fontWeight: FontWeight.w600),
                   ),
                   subtitle: Text(
                     "\$" + product.oldPrice.toString(),

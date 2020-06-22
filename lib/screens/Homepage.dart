@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
-          title: Text("E market"),
+          title: Text("Sudan OrderX"),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -46,10 +46,11 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
-                    color: Colors.grey[600]
+                    color: Colors.grey[700]
                 ),
               ),
             ),
+            SizedBox(height: 5.0,),
             HorizontalList(),
             Padding(
               padding: EdgeInsets.all(20.0),
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
-                    color: Colors.grey[600]
+                    color: Colors.grey[700]
                 ),
               ),
             ),

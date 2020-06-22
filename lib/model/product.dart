@@ -16,5 +16,7 @@ class Product{
        Product(name: "Lebron XII", picture:"assets/products/nike_shoe_product.jpg", oldPrice: 250, price: 200),
        Product(name: "Google redeem", picture:"assets/products/google_card_product.jpg", oldPrice: 15, price: 10),
        Product(name: "Yamaha guitar", picture:"assets/products/gutitar_product.jpg", oldPrice: 350, price: 320),
+       Product(name: "Smeg Toaster", picture:"assets/products/3slice_toaster_product.jpg", oldPrice: 250, price: 220),
+       Product(name: "Huawei Y9", picture:"assets/products/huawei_y9_product.jpg", oldPrice: 300, price: 290),
   ];
 }
