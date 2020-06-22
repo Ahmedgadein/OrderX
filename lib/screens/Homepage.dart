@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             ImageCarousel(),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.fromLTRB(20.0, 20.0, 0, 0),
               child: Text(
                 "Categories",
                 style: TextStyle(
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                "Products",
+                "Recent Products",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
