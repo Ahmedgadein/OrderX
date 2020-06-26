@@ -1,6 +1,6 @@
 # OrderX
 
-A new Flutter application.
+A basic E-commerce app that integrates firebase
 
 ## Getting Started
 
