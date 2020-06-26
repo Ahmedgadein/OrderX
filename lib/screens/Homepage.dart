@@ -4,6 +4,7 @@ import 'package:ecommerceapp/Widgets/MenuDrawer.dart';
 import 'package:ecommerceapp/Widgets/ImageCarousel.dart';
 import 'package:ecommerceapp/widgets/horizontalList.dart';
 import 'package:ecommerceapp/widgets/ProductsList.dart';
+import 'package:ecommerceapp/screens/shopping_cart.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -31,7 +32,9 @@ class _HomePageState extends State<HomePage> {
                 Icons.shopping_cart,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShoppingCart()));
+              },
             ),
           ],
         ),

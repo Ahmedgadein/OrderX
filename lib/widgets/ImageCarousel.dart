@@ -26,6 +26,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
         animationCurve: Curves.fastOutSlowIn,
         animationDuration: Duration(seconds: 1),
         dotSize: 4.0,
+        dotBgColor: Colors.transparent,
         indicatorBgPadding: 10.0,
       ),
     );

@@ -4,4 +4,8 @@ class Category {
 
   Category({this.imageUrl, this.title});
 
+  static List Catergory_List = [
+
+  ];
+
 }

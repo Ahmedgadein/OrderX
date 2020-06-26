@@ -34,7 +34,8 @@ class SingleProduct extends StatelessWidget {
         tag: product.name,
         child: Material(
           child: InkWell(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
               builder: (context)=> ProductDetails(
                 product: this.product,
               ),
@@ -46,22 +47,18 @@ class SingleProduct extends StatelessWidget {
               ),
               footer: Container(
                 color: Colors.white70,
-                child: ListTile(
-                  title: Text(
-                    "\$" + product.price.toString(),
-                    style: TextStyle(
-                        color: Colors.red[800], fontWeight: FontWeight.w600),
-                  ),
-                  subtitle: Text(
-                    "\$" + product.oldPrice.toString(),
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.lineThrough),
-                  ),
-                  leading: Text(
-                    product.name,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(product.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
+                      ),
+                      Text(
+                        "\$" + product.price.toString(),
+                        style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                      )
+                    ],
                   ),
                 ),
               ),

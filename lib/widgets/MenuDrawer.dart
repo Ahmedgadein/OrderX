@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerceapp/screens/shopping_cart.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({
@@ -36,7 +37,7 @@ class MenuDrawer extends StatelessWidget {
               ),
               leading: Icon(
                 Icons.home,
-                color: Colors.grey[900],
+                color: Colors.deepPurple[700],
               ),
             ),
           ),
@@ -52,7 +53,7 @@ class MenuDrawer extends StatelessWidget {
               ),
               leading: Icon(
                 Icons.person,
-                color: Colors.deepPurple[900],
+                color: Colors.deepPurple[700],
               ),
             ),
           ),
@@ -67,24 +68,26 @@ class MenuDrawer extends StatelessWidget {
                     color: Colors.grey[700]),
               ),
               leading: Icon(
-                Icons.shopping_cart,
-                color: Colors.green,
+                Icons.shopping_basket,
+                color: Colors.deepPurple[700],
               ),
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCart()));
+            },
             child: ListTile(
               title: Text(
-                "Categories",
+                "Shopping Cart",
                 style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[700]),
               ),
               leading: Icon(
-                Icons.dashboard,
-                color: Colors.orange[900],
+                Icons.shopping_cart,
+                color: Colors.deepPurple[700],
               ),
             ),
           ),
@@ -100,7 +103,7 @@ class MenuDrawer extends StatelessWidget {
               ),
               leading: Icon(
                 Icons.favorite,
-                color: Colors.red,
+                color: Colors.deepPurple[700],
               ),
             ),
           ),
@@ -117,7 +120,7 @@ class MenuDrawer extends StatelessWidget {
               ),
               leading: Icon(
                 Icons.settings,
-                color: Colors.brown[700],
+                color: Colors.blueGrey,
               ),
             ),
           ),
@@ -133,7 +136,7 @@ class MenuDrawer extends StatelessWidget {
               ),
               leading: Icon(
                 Icons.info,
-                color: Colors.blue,
+                color: Colors.blueGrey,
               ),
             ),
           ),
