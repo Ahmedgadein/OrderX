@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class Product{
   String name;
   String picture;
+  String size = "NA";
+  String color = "Blue";
   int oldPrice;
   int price;
+  int quantity = 1;
 
   int getPrice() => price;
   int getOldPrice() => oldPrice;

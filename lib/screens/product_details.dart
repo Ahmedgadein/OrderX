@@ -344,7 +344,7 @@ class SingleSimilarProduct extends StatelessWidget {
                       ),
                       Text(
                         "\$" + product.price.toString(),
-                        style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.deepPurple[500], fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
