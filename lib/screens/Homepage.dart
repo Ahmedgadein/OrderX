@@ -39,17 +39,20 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         drawer: MenuDrawer(),
-        body: ListView(
+        body: Column(
           children: <Widget>[
-            ImageCarousel(),
+//            ImageCarousel(),
             Padding(
               padding: EdgeInsets.fromLTRB(20.0, 20.0, 0, 0),
-              child: Text(
-                "Categories",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
-                    color: Colors.grey[700]
+              child: Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Categories",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                      color: Colors.grey[700]
+                  ),
                 ),
               ),
             ),
@@ -57,17 +60,19 @@ class _HomePageState extends State<HomePage> {
             HorizontalList(),
             Padding(
               padding: EdgeInsets.all(20.0),
-              child: Text(
-                "Recent Products",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
-                    color: Colors.grey[700]
+              child: Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Recent Products",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                      color: Colors.grey[700]
+                  ),
                 ),
               ),
             ),
-            Container(
-              height: 320.0,
+            Flexible(
               child: Products(),
             )
           ],

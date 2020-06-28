@@ -17,7 +17,9 @@ class _ProductsState extends State<Products> {
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int position) {
-          return SingleProduct(Products._product_list[position]);
+          return Padding(
+              padding: EdgeInsets.all(4.0),
+              child: SingleProduct(Products._product_list[position]));
         });
   }
 }
@@ -30,6 +32,7 @@ class SingleProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 2.0,
       child: Hero(
         tag: product.name,
         child: Material(
