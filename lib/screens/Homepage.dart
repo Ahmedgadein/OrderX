@@ -41,7 +41,6 @@ class _HomePageState extends State<HomePage> {
         drawer: MenuDrawer(),
         body: Column(
           children: <Widget>[
-//            ImageCarousel(),
             Padding(
               padding: EdgeInsets.fromLTRB(20.0, 20.0, 0, 0),
               child: Container(

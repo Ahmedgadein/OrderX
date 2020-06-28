@@ -3,28 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:ecommerceapp/model/Category.dart';
 
 class HorizontalList extends StatelessWidget {
+  final categ_list = Category.Catergory_List;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100.0,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          CategoryWidget(
-              Category(title: "Clothing", imageUrl: "assets/categs/shirt.png")),
-          CategoryWidget(
-              Category(title: "Food", imageUrl: "assets/categs/food.png")),
-          CategoryWidget(
-              Category(title: "Sport", imageUrl: "assets/categs/sport.png")),
-          CategoryWidget(Category(
-              title: "Phones", imageUrl: "assets/categs/electronics.png")),
-          CategoryWidget(Category(
-              title: "Media",
-              imageUrl: "assets/categs/entertainment.png")),
-          CategoryWidget(Category(
-              title: "Utensils", imageUrl: "assets/categs/houseware.png")),
-        ],
-      ),
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: categ_list.length,
+          itemBuilder: (context, index) => CategoryWidget(categ_list[index])),
     );
   }
 }

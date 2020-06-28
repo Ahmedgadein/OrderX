@@ -206,6 +206,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: Text("Buy now"),
                 ),
               ),
+
+              // Cart Icon
               IconButton(
                 color: Colors.deepPurple,
                 icon: Icon(
@@ -213,6 +215,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                   color: Colors.deepPurple,
                 ),
               ),
+
+              //Favourite Icon
               IconButton(
                 color: Colors.deepPurple,
                 icon: Icon(
@@ -223,6 +227,10 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
           Divider(),
+
+
+
+ // ================== Product detail ===========================
           ListTile(
             title: Text("Product details"),
             subtitle: Text(
@@ -231,6 +239,9 @@ class _ProductDetailsState extends State<ProductDetails> {
           Divider(),
           Row(
             children: <Widget>[
+
+
+              //Product name
               Padding(
                 padding: EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0),
                 child: Text(
@@ -243,6 +254,9 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: Text(widget.product.name.toString()),)
             ],
           ),
+
+
+          //Product brand
           Row(
             children: <Widget>[
               Padding(
@@ -259,6 +273,9 @@ class _ProductDetailsState extends State<ProductDetails> {
               )
             ],
           ),
+
+
+          //Product condition
           Row(
             children: <Widget>[
               Padding(
@@ -281,6 +298,8 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: Text("Similar Products", style: TextStyle(fontSize: 18.0, color: Colors.grey[700]),),
           ),
 
+
+  // ============= Similar Products ======================
           Container(
               height: 320.0,
               child: SimilarProducts())

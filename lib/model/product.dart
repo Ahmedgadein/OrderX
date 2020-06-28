@@ -9,9 +9,6 @@ class Product{
   int price;
   int quantity = 1;
 
-  int getPrice() => price;
-  int getOldPrice() => oldPrice;
-
   Product({this.name,this.picture,this.oldPrice,this.price});
 
       static List ProductsList = [
