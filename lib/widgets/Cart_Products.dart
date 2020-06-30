@@ -33,18 +33,18 @@ class SingleCartProduct extends StatefulWidget {
 class _SingleCartProductState extends State<SingleCartProduct> {
 
   void increment(){
-    widget.cart_product.quantity++;
     setState(() {
-  });
+      widget.cart_product.quantity++;
+    });
 }
 void decrement(){
     if(widget.cart_product.quantity == 1){
       return;
     }
 
-    widget.cart_product.quantity--;
     setState(() {
-  });
+      widget.cart_product.quantity--;
+    });
 }
 
   @override
