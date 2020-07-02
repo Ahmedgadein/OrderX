@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/screens/Homepage.dart';
+import 'package:ecommerceapp/screens/sign_up_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -17,6 +19,9 @@ class _LoginState extends State<Login> {
   SharedPreferences sharedPreferences;
   bool isLogged = false;
   bool loading = false;
+  GlobalKey _key = GlobalKey<FormState>();
+  TextEditingController _email_controller = TextEditingController();
+  TextEditingController _password_controller = TextEditingController();
 
   @override
   void initState() {
@@ -27,17 +32,176 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
+      backgroundColor: Colors.white,
+      body: ListView(
+        children: <Widget>[
+     // ====== Logo ========= //
+          Padding(
+            padding: EdgeInsets.only(top: 90),
+            child: Container(
+              height: 250,
+              width: 250,
+              child: Image.asset("assets/logo/logo_no_bg.png"),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 50.0),
+            child: Center(
+              child: Form(
+                key: _key,
+                child: Column(
+                  children: <Widget>[
+
+      // ========== Email textfield ================ //
+                    Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: Colors.blue[500].withOpacity(0.8),
+                        elevation: 0.0,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10.0, right: 20.0),
+                          child: TextFormField(
+                            controller: _email_controller,
+                            decoration: InputDecoration(
+                              hintText: "Email",
+                              icon: Icon(Icons.email),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+          // =========== Password textfield =========== //
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: Colors.blue[500].withOpacity(0.8),
+                        elevation: 0.0,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10.0, right: 20.0),
+                          child: TextFormField(
+                            cursorColor: Colors.white,
+                            controller: _password_controller,
+                            decoration: InputDecoration(
+                              hintText: "Password",
+                              icon: Icon(
+                                Icons.lock_outline,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "Cannot be empty";
+                              } else {
+                                if (value.length < 8) {
+                                  return "Password cannot be shorter than 8 characters";
+                                }
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+
+          // ============= Login Button ============== //
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(30.0),
+                        elevation: 0.0,
+                        color: Colors.deepPurple[900],
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10.0, right: 10.0),
+                          child: MaterialButton(
+                            elevation: 0.0,
+                            onPressed: () {},
+                            color: Colors.deepPurple[900],
+                            minWidth: MediaQuery.of(context).size.width,
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+      // ========= Forgot Password =========== //
+          Container(
+            alignment: Alignment.center,
+            child: FlatButton(
+              onPressed: () {},
+              child: Text(
+                "Forgot Password",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+
+    // ========= Sign Up ============ //
+          Container(
+            alignment: Alignment.center,
+            child: FlatButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+              },
+              child: Text(
+                "Sign Up",
+                style: TextStyle(
+                    color: Colors.blue[900],
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          )
+        ],
       ),
-      body: Center(
-        child: MaterialButton(
-          onPressed: () {
-            handleSignIn().whenComplete(() => Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomePage())));
-          },
-          color: Colors.deepPurple,
-          child: Text("Google Sign In / Sign Up"),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10),
+        child: OutlineButton(
+          splashColor: Colors.grey,
+          onPressed: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+          highlightElevation: 0,
+          borderSide: BorderSide(color: Colors.grey),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image(
+                    image: AssetImage("assets/logo/google_logo.png"),
+                    height: 30.0),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Sign in with Google',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

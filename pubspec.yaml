@@ -54,6 +54,7 @@ flutter:
   assets:
     - assets/products/
     - assets/categs/
+    - assets/logo/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
