@@ -17,7 +17,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
-          title: Text("Sudan OrderX"),
+          title: Expanded(
+            child: Material(
+              borderRadius: BorderRadius.circular(15),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.search),
+                    hintText: "Search..."
+                  ),
+                ),
+              ),
+            ),
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(

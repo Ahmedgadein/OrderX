@@ -1,5 +1,7 @@
+import 'package:ecommerceapp/repository/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/screens/shopping_cart.dart';
+import 'package:provider/provider.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({
@@ -8,6 +10,7 @@ class MenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context);
     return Drawer(
       child: ListView(
         children: <Widget>[
@@ -137,6 +140,25 @@ class MenuDrawer extends StatelessWidget {
               leading: Icon(
                 Icons.info,
                 color: Colors.blueGrey,
+              ),
+            ),
+          ),
+          Divider(),
+          InkWell(
+            onTap: () {
+              user.signOut();
+            },
+            child: ListTile(
+              title: Text(
+                "Sign Out",
+                style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[700]),
+              ),
+              leading: Icon(
+                Icons.subdirectory_arrow_left,
+                color: Colors.red[800],
               ),
             ),
           ),
