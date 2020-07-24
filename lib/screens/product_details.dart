@@ -1,6 +1,8 @@
 import 'package:ecommerceapp/model/product.dart';
+import 'package:ecommerceapp/repository/cart_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Product product;
@@ -14,6 +16,8 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
+
     return Scaffold(
       // ======== Appbar ==========
       appBar: AppBar(
@@ -201,7 +205,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: MaterialButton(
                   textColor: Colors.white,
                   elevation: 0.2,
-                  onPressed: () {},
+                  onPressed: () {
+                    cart.addProduct(widget.product);
+                  },
                   color: Colors.deepPurple,
                   child: Text("Buy now"),
                 ),
