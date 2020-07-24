@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerceapp/screens/product_details.dart';
 
 class Products extends StatefulWidget {
-  static List _product_list = Product.ProductsList;
+  static List _product_list = List<Product>();
 
   @override
   _ProductsState createState() => _ProductsState();
@@ -44,8 +44,8 @@ class SingleProduct extends StatelessWidget {
               ),
             )),
             child: GridTile(
-              child: Image.asset(
-                product.picture,
+              child: Image.network(
+                product.pic2,
                 fit: BoxFit.cover,
               ),
               footer: Container(

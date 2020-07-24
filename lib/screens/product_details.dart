@@ -42,7 +42,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: GridTile(
               child: Container(
                   color: Colors.white,
-                  child: Image.asset(widget.product.picture)),
+                  child: Image.network(widget.product.pic2)),
               footer: new Container(
                 color: Colors.white70,
                 child: ListTile(
@@ -53,7 +53,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   title: Row(
                     children: <Widget>[
-                      Expanded(
+                      !widget.product.onSale ? Expanded(child: Text(""),) :Expanded(
                         child: Text(
                           "\$" + widget.product.oldPrice.toString(),
                           style: TextStyle(
@@ -269,7 +269,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               Padding(
                 padding: EdgeInsets.all(5.0),
-                child: Text("Brand X"),
+                child: Text(widget.product.brand),
               )
             ],
           ),
@@ -287,7 +287,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Padding(padding: EdgeInsets.all(5.0),
-              child: Text("NEW"),)
+              child: Text(widget.product.isNew ? "New" : "Used"),)
             ],
           ),
 
@@ -310,7 +310,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 }
 
 class SimilarProducts extends StatefulWidget {
-  static List _product_list = Product.ProductsList;
+  static List _product_list = List<Product>();
 
   @override
   _SimilarProductsState createState() => _SimilarProductsState();
@@ -348,8 +348,8 @@ class SingleSimilarProduct extends StatelessWidget {
                   ),
                 )),
             child: GridTile(
-              child: Image.asset(
-                product.picture,
+              child: Image.network(
+                product.Pic1,
                 fit: BoxFit.cover,
               ),
               footer: Container(

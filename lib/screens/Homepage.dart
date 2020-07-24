@@ -1,3 +1,6 @@
+import 'package:ecommerceapp/model/product.dart';
+import 'package:ecommerceapp/repository/database/ProductsService.dart';
+import 'package:ecommerceapp/widgets/featured_products.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/Widgets/MenuDrawer.dart';
@@ -11,6 +14,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ProductsService _service = ProductsService();
+  List<Product> featured;
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,12 +64,28 @@ class _HomePageState extends State<HomePage> {
         drawer: MenuDrawer(),
         body: Column(
           children: <Widget>[
+//            Padding(
+//              padding: EdgeInsets.fromLTRB(20.0, 20.0, 0, 0),
+//              child: Container(
+//                alignment: Alignment.topLeft,
+//                child: Text(
+//                  "Categories",
+//                  style: TextStyle(
+//                      fontWeight: FontWeight.bold,
+//                      fontSize: 20.0,
+//                      color: Colors.grey[700]
+//                  ),
+//                ),
+//              ),
+//            ),
+//            SizedBox(height: 5.0,),
+//            HorizontalList(),
             Padding(
-              padding: EdgeInsets.fromLTRB(20.0, 20.0, 0, 0),
+              padding: EdgeInsets.all(20.0),
               child: Container(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Categories",
+                  "Featured Products",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0,
@@ -67,8 +94,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(height: 5.0,),
-            HorizontalList(),
+
+            FeaturedProducts(),
+
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Container(

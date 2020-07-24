@@ -8,7 +8,7 @@ class CartProducts extends StatefulWidget {
 }
 
 class _CartProductsState extends State<CartProducts> {
-  List _cart_products = Product.ProductsList;
+  List _cart_products = List<Product>();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -34,7 +34,6 @@ class _SingleCartProductState extends State<SingleCartProduct> {
 
   void increment(){
     setState(() {
-      widget.cart_product.quantity++;
     });
 }
 void decrement(){
@@ -43,7 +42,6 @@ void decrement(){
     }
 
     setState(() {
-      widget.cart_product.quantity--;
     });
 }
 
@@ -53,8 +51,8 @@ void decrement(){
       child: ListTile(
         leading: Container(
           width: 60.0,
-          child: Image.asset(
-            widget.cart_product.picture,),
+          child: Image.network(
+            widget.cart_product.Pic1,),
         ),
         title: Text(widget.cart_product.name),
           subtitle: Column(
@@ -67,7 +65,7 @@ void decrement(){
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
-                    child: Text(widget.cart_product.size, style: TextStyle(fontWeight: FontWeight.bold),),
+                    child: Text(widget.cart_product.name, style: TextStyle(fontWeight: FontWeight.bold),),
                   ),
 
                   Padding(
@@ -76,7 +74,7 @@ void decrement(){
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
-                    child: Text(widget.cart_product.color, style: TextStyle(fontWeight: FontWeight.bold),),
+                    child: Text(widget.cart_product.name, style: TextStyle(fontWeight: FontWeight.bold),),
                   ),
                 ],
               ),
