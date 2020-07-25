@@ -28,8 +28,11 @@ class MenuDrawer extends StatelessWidget {
             ),
             decoration: BoxDecoration(color: Colors.deepPurple),
           ),
+
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pop();
+            },
             child: ListTile(
               title: Text(
                 "Home Page",
@@ -44,6 +47,8 @@ class MenuDrawer extends StatelessWidget {
               ),
             ),
           ),
+
+
           InkWell(
             onTap: () {},
             child: ListTile(

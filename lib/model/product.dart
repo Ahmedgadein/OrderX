@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ class Product{
   String NAME = "product_name";
   String CATEGORY = "category";
   String BRAND = "brand";
+  String DETAILS = "details";
 
   String QUANTITY = "quantity";
   String PRICE = "price";
@@ -20,12 +23,16 @@ class Product{
   String NEW = "new";
   String ONSALE = "onSale";
 
+  String SIZES = "sizes";
+  String COLORS = "colors";
+
 
 
   //Fields
   String _name;
   String _category;
   String _brand;
+  String _details;
 
   String _picture1;
   String _picture2;
@@ -39,10 +46,14 @@ class Product{
   bool _onSale;
   bool _new;
 
+  List<String> _sizes = List<String>();
+  List<String> _colors = List<String>();
+
   //Getters
   String get name => _name;
   String get category => _category;
   String get brand => _brand;
+  String get details => _details;
 
   String get Pic1 => _picture1;
   String get pic2 => _picture2;
@@ -56,12 +67,16 @@ class Product{
   bool get onSale => _onSale;
   bool get isNew => _new;
 
+  List<String> get sizes => _sizes;
+  List<String> get colors => _colors;
+
   //Constructor
   Product.fromSnapshot(DocumentSnapshot snapshot){
     Map data = snapshot.data;
     _name = data[NAME];
     _category = data[CATEGORY];
     _brand = data[BRAND];
+    _details = data[DETAILS];
 
     _picture1 = data[Pic1];
     _picture2 = data["image2"];
@@ -74,7 +89,16 @@ class Product{
     _new = data[NEW];
     _featured = data[FEATURED];
     _onSale = data[ONSALE];
+
+    Map<String,dynamic> sizes = data[SIZES];
+    for(int i=0; i< sizes.length; i++){
+      _sizes.add(sizes["size$i"]);
+    }
+
+    Map<String,dynamic> colors = data[COLORS];
+    for(int i=0; i< colors.length; i++){
+      _colors.add(colors["size$i"]);
+    }
+
   }
-
-
 }

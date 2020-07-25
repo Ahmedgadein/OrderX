@@ -39,11 +39,8 @@ class FeaturedProducts extends StatelessWidget {
     featuredList.clear();
     snaps.forEach((snap){
       Product product = Product.fromSnapshot(snap);
-      print(product.category);
-      print(product.pic2.toString());
       featuredList.add(product);
     });
-    print("List length: " + featuredList.length.toString());
   }
 }
 
@@ -62,7 +59,7 @@ class SingleFeaturedProduct extends StatelessWidget {
         child: Card(
           elevation: 2.0,
           child: Hero(
-            tag: product.name,
+            tag: product.name + "featured",
             child: Material(
               child: InkWell(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(

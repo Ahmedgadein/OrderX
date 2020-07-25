@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/model/product.dart';
 import 'package:ecommerceapp/repository/cart_provider.dart';
+import 'package:ecommerceapp/widgets/similar_products.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -310,74 +311,6 @@ class _ProductDetailsState extends State<ProductDetails> {
               height: 320.0,
               child: SimilarProducts())
         ],
-      ),
-    );
-  }
-}
-
-class SimilarProducts extends StatefulWidget {
-  static List _product_list = List<Product>();
-
-  @override
-  _SimilarProductsState createState() => _SimilarProductsState();
-}
-
-class _SimilarProductsState extends State<SimilarProducts> {
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-        itemCount: SimilarProducts._product_list.length,
-        gridDelegate:
-        SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (BuildContext context, int position) {
-          return SingleSimilarProduct(SimilarProducts._product_list[position]);
-        });
-  }
-}
-
-class SingleSimilarProduct extends StatelessWidget {
-  Product product;
-
-  SingleSimilarProduct(this.product);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Hero(
-        tag: product.name,
-        child: Material(
-          child: InkWell(
-            onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context)=> ProductDetails(
-                    product: this.product,
-                  ),
-                )),
-            child: GridTile(
-              child: Image.network(
-                product.Pic1,
-                fit: BoxFit.cover,
-              ),
-              footer: Container(
-                color: Colors.white70,
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(product.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
-                      ),
-                      Text(
-                        "\$" + product.price.toString(),
-                        style: TextStyle(color: Colors.deepPurple[500], fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

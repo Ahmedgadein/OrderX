@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/Widgets/MenuDrawer.dart';
 import 'package:ecommerceapp/widgets/horizontalList.dart';
-import 'package:ecommerceapp/widgets/ProductsList.dart';
+import 'package:ecommerceapp/widgets/recent_products.dart';
 import 'package:ecommerceapp/screens/shopping_cart.dart';
 
 class HomePage extends StatefulWidget {
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Flexible(
-              child: Products(),
+              child: RecentProducts(),
             )
           ],
         ));

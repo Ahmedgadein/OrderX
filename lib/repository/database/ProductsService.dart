@@ -19,6 +19,21 @@ class ProductsService {
     }
   }
 
+  Future<List<DocumentSnapshot>> getSimilarProducts(String category) async {
+    List<DocumentSnapshot> docs;
+
+    try {
+      await _firestore
+          .collection(_collection)
+          .where("category", isEqualTo: category)
+          .getDocuments()
+          .then((value) => docs = value.documents);
+      return docs;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   Future<List<DocumentSnapshot>> getRecentProducts() async {
     List<DocumentSnapshot> docs;
 
