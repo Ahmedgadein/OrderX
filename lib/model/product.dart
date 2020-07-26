@@ -70,6 +70,10 @@ class Product{
   List<String> get sizes => _sizes;
   List<String> get colors => _colors;
 
+  String orderSize = "NA";
+  String orderColor = "NA";
+  String orderQuantity = "1";
+
   //Constructor
   Product.fromSnapshot(DocumentSnapshot snapshot){
     Map data = snapshot.data;
@@ -78,9 +82,9 @@ class Product{
     _brand = data[BRAND];
     _details = data[DETAILS];
 
-    _picture1 = data[Pic1];
+    _picture1 = data["image1"];
     _picture2 = data["image2"];
-    _picture3 = data[Pic3];
+    _picture3 = data["image3"];
 
     _price = data[PRICE];
     _old_price = data[OLD_PRICE];
@@ -97,7 +101,7 @@ class Product{
 
     Map<String,dynamic> colors = data[COLORS];
     for(int i=0; i< colors.length; i++){
-      _colors.add(colors["size$i"]);
+      _colors.add(colors["color$i"]);
     }
 
   }

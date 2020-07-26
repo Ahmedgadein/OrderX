@@ -73,7 +73,7 @@ class SingleSimilarProduct extends StatelessWidget {
             )),
             child: GridTile(
               child: Image.network(
-                product.Pic1,
+                product.Pic3,
                 fit: BoxFit.cover,
               ),
               footer: Container(

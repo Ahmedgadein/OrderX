@@ -7,8 +7,19 @@ import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Product product;
+  String _selected_size;
+  String _selected_color;
+  String _selected_quantitiy = 1.toString();
 
-  ProductDetails({this.product});
+  ProductDetails({this.product}) {
+    _selected_size = product.sizes[0];
+    _selected_color = product.colors[0];
+
+    if(product.sizes.length != 0 && product.sizes.length != 0){
+      product.orderSize = _selected_size;
+      product.orderColor = _selected_color;
+    }
+  }
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
@@ -25,8 +36,11 @@ class _ProductDetailsState extends State<ProductDetails> {
         backgroundColor: Colors.deepPurple,
         title: Center(
           child: GestureDetector(
-              child: Text("Sudan OrderX"),
-          onTap: (){Navigator.of(context).pop(context);},),
+            child: Text("Sudan OrderX"),
+            onTap: () {
+              Navigator.of(context).pop(context);
+            },
+          ),
         ),
         actions: <Widget>[
           IconButton(
@@ -58,15 +72,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   title: Row(
                     children: <Widget>[
-                      !widget.product.onSale ? Expanded(child: Text(""),) :Expanded(
-                        child: Text(
-                          "\$" + widget.product.oldPrice.toString(),
-                          style: TextStyle(
-                            color: Colors.grey,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
-                      ),
+                      !widget.product.onSale
+                          ? Expanded(
+                              child: Text(""),
+                            )
+                          : Expanded(
+                              child: Text(
+                                "\$" + widget.product.oldPrice.toString(),
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ),
                       Expanded(
                         child: Text(
                           "\$" + widget.product.price.toString(),
@@ -88,112 +106,103 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: <Widget>[
               //Size button
               Expanded(
-                child: MaterialButton(
-                  textColor: Colors.grey,
-                  elevation: 0.2,
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("Size"),
-                            content: Text("Choose size"),
-                            actions: <Widget>[
-                              MaterialButton(
-                                child: Text("Close"),
-                                onPressed: () {
-                                  Navigator.of(context).pop(context);
-                                },
-                              )
-                            ],
-                          );
-                        });
-                  },
-                  color: Colors.white,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
                         child: Text("Size"),
                       ),
-                      Expanded(
-                        child: Icon(Icons.arrow_drop_down),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Expanded(
+                        child: DropdownButton(
+                            value: widget._selected_size,
+                            items: widget.product.sizes
+                                .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(
+                                        e.toString(),
+                                        style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ))
+                                .toList(),
+                            onChanged: (String value) {
+                              setState(() {
+                                widget._selected_size = value;
+                                widget.product.orderSize = value;
+                              });
+                            })),
+                  ],
                 ),
               ),
 
               //Color button
               Expanded(
-                child: MaterialButton(
-                  textColor: Colors.grey,
-                  elevation: 0.2,
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("Color"),
-                            content: Text("Choose Color"),
-                            actions: <Widget>[
-                              MaterialButton(
-                                child: Text("Close"),
-                                onPressed: () {
-                                  Navigator.of(context).pop(context);
-                                },
-                              )
-                            ],
-                          );
-                        });
-                  },
-                  color: Colors.white,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text("Color"),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.arrow_drop_down),
-                      ),
-                    ],
-                  ),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text("Color"),
+                    ),
+                    Expanded(
+                        child: DropdownButton(
+                            value: widget._selected_color,
+                            items: widget.product.colors
+                                .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(
+                                        e.toString(),
+                                        style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ))
+                                .toList(),
+                            onChanged: (String value) {
+                              setState(() {
+                                widget._selected_color = value;
+                                widget.product.orderColor = value;
+                              });
+                            })),
+                  ],
                 ),
               ),
 
               //Quantity button
               Expanded(
-                child: MaterialButton(
-                  textColor: Colors.grey,
-                  elevation: 0.2,
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("Quantity"),
-                            content: Text("Choose quantity"),
-                            actions: <Widget>[
-                              MaterialButton(
-                                child: Text("Close"),
-                                onPressed: () {
-                                  Navigator.of(context).pop(context);
-                                },
-                              )
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text("Quantity"),
+                    ),
+                    Expanded(
+                        child: DropdownButton(
+                            value: widget._selected_quantitiy,
+                            items: [
+                              for (var i = 1;
+                                  i <= int.parse(widget.product.quantity);
+                                  i++)
+                                DropdownMenuItem(
+                                  value: i.toString(),
+                                  child: Text(
+                                    i.toString(),
+                                    style: TextStyle(
+                                        color: Colors.deepPurple,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
                             ],
-                          );
-                        });
-                  },
-                  color: Colors.white,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text("Qty"),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.arrow_drop_down),
-                      ),
-                    ],
-                  ),
+                            onChanged: (String value) {
+                              setState(() {
+                                widget._selected_quantitiy = value;
+                                widget.product.orderQuantity = value;
+                              });
+                            })),
+                  ],
                 ),
               ),
             ],
@@ -214,15 +223,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
 
-              // Cart Icon
-              IconButton(
-                color: Colors.deepPurple,
-                icon: Icon(
-                  Icons.add_shopping_cart,
-                  color: Colors.deepPurple,
-                ),
-              ),
-
               //Favourite Icon
               IconButton(
                 color: Colors.deepPurple,
@@ -235,19 +235,16 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
           Divider(),
 
-
-
- // ================== Product detail ===========================
+          // ================== Product detail ===========================
           ListTile(
-            title: Text("Product details"),
-            subtitle: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Condimentum vitae sapien pellentesque habitant morbi tristique. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo vel. Tristique senectus et netus et malesuada fames ac. Nisi est sit amet facilisis magna etiam tempor orci. Dolor purus non enim praesent elementum facilisis. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Eget egestas purus viverra accumsan in. Magna fringilla urna porttitor rhoncus dolor purus non enim. Sit amet aliquam id diam maecenas. Fames ac turpis egestas integer eget aliquet. Proin libero nunc consequat interdum varius sit amet mattis."),
-          ),
+              title: Text("Product details"),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(widget.product.details),
+              )),
           Divider(),
           Row(
             children: <Widget>[
-
-
               //Product name
               Padding(
                 padding: EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0),
@@ -257,11 +254,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: Colors.grey, fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(padding: EdgeInsets.all(5.0),
-              child: Text(widget.product.name.toString()),)
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.name.toString()),
+              )
             ],
           ),
-
 
           //Product brand
           Row(
@@ -281,7 +279,6 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
 
-
           //Product condition
           Row(
             children: <Widget>[
@@ -293,26 +290,27 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: Colors.grey, fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(padding: EdgeInsets.all(5.0),
-              child: Text(widget.product.isNew ? "New" : "Used"),)
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.isNew ? "New" : "Used"),
+              )
             ],
           ),
 
           Divider(),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(15.0, 10.0 , 0, 10.0),
-            child: Text("Similar Products", style: TextStyle(fontSize: 18.0, color: Colors.grey[700]),),
+            padding: EdgeInsets.fromLTRB(15.0, 10.0, 0, 10.0),
+            child: Text(
+              "Similar Products",
+              style: TextStyle(fontSize: 18.0, color: Colors.grey[700]),
+            ),
           ),
 
-
-  // ============= Similar Products ======================
-          Container(
-              height: 320.0,
-              child: SimilarProducts())
+          // ============= Similar Products ======================
+          Container(height: 320.0, child: SimilarProducts())
         ],
       ),
     );
   }
 }
-
