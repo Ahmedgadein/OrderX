@@ -12,10 +12,10 @@ class ProductDetails extends StatefulWidget {
   String _selected_quantitiy = 1.toString();
 
   ProductDetails({this.product}) {
-    _selected_size = product.sizes[0];
-    _selected_color = product.colors[0];
+    product.sizes.length != 0 ? _selected_size = product.sizes[0] : "NA";
+    product.colors.length != 0 ? _selected_color = product.colors[0] : "NA";
 
-    if(product.sizes.length != 0 && product.sizes.length != 0){
+    if (product.sizes.length != 0 && product.sizes.length != 0) {
       product.orderSize = _selected_size;
       product.orderColor = _selected_color;
     }
@@ -147,6 +147,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Color"),
                     ),
                     Expanded(
+                      flex: 2,
                         child: DropdownButton(
                             value: widget._selected_color,
                             items: widget.product.colors

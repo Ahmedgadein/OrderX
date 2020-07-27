@@ -59,7 +59,7 @@ class _SingleCartProductState extends State<SingleCartProduct> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
                   child: Text(
-                    widget.cart_product.name,
+                    widget.cart_product.orderSize,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -70,7 +70,7 @@ class _SingleCartProductState extends State<SingleCartProduct> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
                   child: Text(
-                    widget.cart_product.name,
+                    widget.cart_product.orderColor,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
