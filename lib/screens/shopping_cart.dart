@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/widgets/Cart_Products.dart';
+import 'package:provider/provider.dart';
+import 'package:ecommerceapp/repository/cart_provider.dart';
 
 class ShoppingCart extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class ShoppingCart extends StatefulWidget {
 class _ShoppingCartState extends State<ShoppingCart> {
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
@@ -33,7 +36,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
             Expanded(
               child: ListTile(
                 title: Text("Total:"),
-                subtitle: Text("\$532"),
+                subtitle: Text(cart.getTotal().toString()),
               ),
             ),
 

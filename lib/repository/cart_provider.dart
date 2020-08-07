@@ -22,6 +22,15 @@ class CartProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  int getTotal(){
+    int total = 0;
+    _cart.forEach((key, value) {
+      total += int.parse(key.price) * value;
+    });
+
+    return total;
+  }
+
   incrementProductQuantitiy(Product product){
     if(int.parse(product.quantity) - _cart[product] > 0){
       _cart[product] += 1;

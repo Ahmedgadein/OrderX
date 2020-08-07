@@ -3,6 +3,7 @@ import 'package:ecommerceapp/repository/cart_provider.dart';
 import 'package:ecommerceapp/widgets/similar_products.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -218,6 +219,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   elevation: 0.2,
                   onPressed: () {
                     cart.addProduct(widget.product);
+                    Fluttertoast.showToast(msg: "Added to cart", toastLength: Toast.LENGTH_LONG);
                   },
                   color: Colors.deepPurple,
                   child: Text("Buy now"),

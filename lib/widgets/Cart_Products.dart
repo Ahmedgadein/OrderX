@@ -1,10 +1,15 @@
 import 'package:ecommerceapp/model/product.dart';
 import 'package:ecommerceapp/repository/cart_provider.dart';
+import 'package:ecommerceapp/screens/shopping_cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CartProducts extends StatefulWidget {
+abstract class ValueListener{
+  void onValueChanged();
+}
+
+class CartProducts extends StatefulWidget  {
   @override
   _CartProductsState createState() => _CartProductsState();
 }
@@ -99,6 +104,7 @@ class _SingleCartProductState extends State<SingleCartProduct> {
                     onTap: () {
                       _cart.incrementProductQuantitiy(widget.cart_product);
                       setState(() {});
+                      ValueListener.on
                     },
                     child: Icon(Icons.arrow_drop_up))),
             Expanded(
